@@ -8,11 +8,15 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     restart: always
+    networks:
+      - monitoring
 
   node-exporter:
     image: prom/node-exporter
     container_name: node-exporter
     restart: always
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana
@@ -23,7 +27,13 @@ services:
       - ./grafana:/etc/grafana
       - grafana-data:/var/lib/grafana
     restart: always
+    networks:
+      - monitoring
 
 volumes:
   prometheus-data:
   grafana-data:
+
+networks:
+  monitoring:
+    driver: bridge
