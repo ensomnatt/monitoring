@@ -5,9 +5,9 @@ scrape_configs:
   - job_name: "myprometheus"
 
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["prometheus:9090"]
 
   - job_name: "server"
     
     static_configs:
-      - targets: [localhost:9100]
+      - targets: [node-exporter:9100]
