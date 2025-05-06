@@ -28,6 +28,6 @@ services:
       - grafana-data:/var/lib/grafana
     restart: always
 
-  volumes:
-    prometheus-data:
-    grafana-data:
+volumes:
+  prometheus-data:
+  grafana-data:
