@@ -17,8 +17,16 @@ services:
     image: prom/node-exporter
     container_name: node-exporter
     restart: always
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/rootfs"
     networks:
       - monitoring
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
 
   grafana:
     image: grafana/grafana
