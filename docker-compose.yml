@@ -49,6 +49,8 @@ services:
       - ./loki/loki-config.yml:/etc/loki/config.yaml
       - loki-data:/tmp/loki
     command: -config.file=/etc/logi/config.yaml
+    networks:
+      - monitoring
 
   promatil:
     image: grafana/promtail
@@ -60,6 +62,8 @@ services:
     command: -config.file=/etc/promtail/config.yaml
     depends_on:
       - loki
+    networks:
+      - monitoring
 
 volumes:
   prometheus-data:
