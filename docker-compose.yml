@@ -40,36 +40,9 @@ services:
     networks:
       - monitoring
 
-  loki:
-    image: grafana/loki
-    container_name: loki
-    ports: 
-      - "3100:3100"
-    volumes:
-      - ./loki/loki-config.yml:/etc/loki/config.yaml
-      - loki-data:/tmp/loki
-    command: -config.file=/etc/loki/config.yaml
-    networks:
-      - monitoring
-
-  promatil:
-    image: grafana/promtail
-    container_name: promtail
-    volumes: 
-      - ./promtail/promtail-config.yml:/etc/promtail/config.yaml
-      - /var/log:/var/log
-      - promtail-data:/tmp
-    command: -config.file=/etc/promtail/config.yaml
-    depends_on:
-      - loki
-    networks:
-      - monitoring
-
 volumes:
   prometheus-data:
   grafana-data:
-  loki-data:
-  promtail-data:
 
 networks:
   monitoring:
