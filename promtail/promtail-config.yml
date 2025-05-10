@@ -11,7 +11,7 @@ scrape_config:
   - job_name: system
     static_configs:
       - targets:
-        - localhost
+        - loki
       labels:
         job: varlogs
         __path__: /var/log/*.log
