@@ -7,11 +7,11 @@ positions:
 clients:
   - url: http://loki:3100/loki/api/v1/push
 
-scrape_config:
+scrape_configs:                             # <== s на конце
   - job_name: system
     static_configs:
       - targets:
-        - loki
-      labels:
-        job: varlogs
-        __path__: /var/log/*.log
+          - localhost
+        labels:
+          job: varlogs
+          __path__: /var/log/*.log
